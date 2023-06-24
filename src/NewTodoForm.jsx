@@ -4,8 +4,8 @@ export function NewTodoForm(props) {
                             //{onSubmit}
     const date = `M:${props.time.getMonth()}/D:${props.time.getDate() + 5}/Y:${props.time.getFullYear()}`;
     const [newItem, setNewItem] = useState("");
-    const [quantity, setQuantity] = useState(0);
-    const [location, setLocation] = useState("");
+    const [quantity, setQuantity] = useState(1);
+    const [location, setLocation] = useState("Fresh");
     const [expire, setExpire] = useState(date);
     function handleSubmit(e) {
         e.preventDefault();
@@ -14,8 +14,8 @@ export function NewTodoForm(props) {
         props.onSubmit(newItem, quantity, location, expire)
         //onSubmit(newItem);
         setNewItem("");
-        setQuantity(0);
-        setLocation("");
+        setQuantity(1);
+        setLocation("Fresh");
         setExpire(date);
       }
 
@@ -30,7 +30,7 @@ export function NewTodoForm(props) {
             id="item" />
         </div>
         <div className="form-row">
-            <label htmlFor="item">Quantity</label>
+            <label htmlFor="quantity">Quantity:</label>
             <input 
             value={quantity} 
             onChange={e => setQuantity(e.target.value)} 
@@ -38,15 +38,32 @@ export function NewTodoForm(props) {
              />
         </div>
         <div className="form-row">
-            <label htmlFor="item">Location</label>
+            <p>Location:</p>
+
+            <label>
             <input 
-            value={location} 
-            onChange={e => setLocation(e.target.value)} 
-            type="text" 
+            value="Fresh" 
+            name="location"
+            onChange={e => setLocation("Fresh")} 
+            type="radio"
+            defaultChecked={true} 
             />
+            Fresh</label>
+
+            <label>
+            <input 
+            value="Frozen"
+            name="location" 
+            onChange={e => setLocation("Frozen")} 
+            type="radio" 
+            />
+            Frozen</label>
+
+
+            
         </div>
         <div className="form-row">
-            <label htmlFor="item">Expire Date</label>
+            <label htmlFor="expire">Expire Date:</label>
             <input 
             value={expire} 
             onChange={e => setExpire(e.target.value)} 

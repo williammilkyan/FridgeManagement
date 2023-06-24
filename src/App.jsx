@@ -58,9 +58,13 @@ export default function App() {
     })
   }
 
+  function clear() {
+    setTodos([]);
+  }
+
   return (
     <div>
-      <IntroPlate time={time}/>
+      <IntroPlate time={time} clear={clear}/>
       <NewTodoForm  onSubmit={addTodo} time={time}/>
       
       <TodoList 
