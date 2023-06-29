@@ -63,10 +63,11 @@ export default function App() {
   }
 
   return (
-    <div>
-      <IntroPlate time={time} clear={clear}/>
-      <NewTodoForm  onSubmit={addTodo} time={time}/>
-      
+    <div className="sectionContainer">
+      <div className="sectionBox">
+        <IntroPlate time={time} clear={clear}/>
+        <NewTodoForm  onSubmit={addTodo} time={time}/>
+      </div>
       <TodoList 
       todos={todos} 
       toggleTodo={toggleTodo}

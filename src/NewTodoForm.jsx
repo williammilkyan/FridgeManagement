@@ -5,24 +5,29 @@ export function NewTodoForm(props) {
     const date = `M:${props.time.getMonth()}/D:${props.time.getDate() + 5}/Y:${props.time.getFullYear()}`;
     const [newItem, setNewItem] = useState("");
     const [quantity, setQuantity] = useState(1);
-    const [location, setLocation] = useState("Fresh");
+    const [location, setLocation] = useState("");
     const [expire, setExpire] = useState(date);
+
+
     function handleSubmit(e) {
         e.preventDefault();
-        if (newItem === "") return
-
-        props.onSubmit(newItem, quantity, location, expire)
+        if (newItem === "") return;
+        if (location === ""){
+            alert("Please select a location!");
+            return;
+        }
+        props.onSubmit(newItem, quantity, location, expire);
         //onSubmit(newItem);
         setNewItem("");
         setQuantity(1);
-        setLocation("Fresh");
+        setLocation("");
         setExpire(date);
       }
 
     return (
     <form onSubmit={handleSubmit} className="new-item-form">
         <div className="form-row">
-            <label htmlFor="item">New Item</label>
+            <label htmlFor="item">New Item:</label>
             <input 
             value={newItem} 
             onChange={e => setNewItem(e.target.value)} 
@@ -42,11 +47,21 @@ export function NewTodoForm(props) {
 
             <label>
             <input 
+            value="Others" 
+            name="location"
+            onChange={e => setLocation(e.target.value)} 
+            type="radio"
+            checked={location === "Others"}
+            />
+            Others</label>
+
+            <label>
+            <input 
             value="Fresh" 
             name="location"
-            onChange={e => setLocation("Fresh")} 
+            onChange={e => setLocation(e.target.value)} 
             type="radio"
-            defaultChecked={true} 
+            checked={location === "Fresh"}
             />
             Fresh</label>
 
@@ -54,8 +69,9 @@ export function NewTodoForm(props) {
             <input 
             value="Frozen"
             name="location" 
-            onChange={e => setLocation("Frozen")} 
-            type="radio" 
+            onChange={e => setLocation(e.target.value)} 
+            type="radio"
+            checked={location === "Frozen"} 
             />
             Frozen</label>
 

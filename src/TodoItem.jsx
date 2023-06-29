@@ -1,6 +1,6 @@
 
 
-export function TodoItem ({ completed, id, title, quantity, location, expire, timeStamp, toggleTodo, deleteTodo }) {
+export function TodoItem ({ completed, id, title, quantity, expire, timeStamp, toggleTodo, deleteTodo }) {
     return (
         <li>
           <label>
@@ -10,7 +10,7 @@ export function TodoItem ({ completed, id, title, quantity, location, expire, ti
             {title}
           </label>
           <p>Quantity: {quantity}</p>
-          <p>Location: {location}</p>
+          
           <p>Store Date: {timeStamp}</p>
           <p>Expire Date: {expire}</p>
           <button
